@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import os
 import shutil
 import sys
 import tempfile
@@ -46,7 +47,11 @@ def main():
     parser.add_argument("--min-scene-len", type=int, default=15, help="Minimum shot length in frames")
     parser.add_argument("--no-audio", action="store_true", help="Skip audio transcription")
     parser.add_argument("--keep-frames", action="store_true", help="Keep extracted frames after processing")
+    parser.add_argument("--gpu", type=int, default=None, help="GPU index to use (e.g. 0 or 1). Default: all visible GPUs")
     args = parser.parse_args()
+
+    if args.gpu is not None:
+        os.environ["CUDA_VISIBLE_DEVICES"] = str(args.gpu)
 
     video_path = str(Path(args.video).resolve())
     if not Path(video_path).exists():
