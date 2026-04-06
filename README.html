@@ -249,7 +249,7 @@ cd nakoukavac/remote</code></pre>
 source venv/bin/activate
 pip install -r requirements.txt</code></pre>
   <p>This installs PyTorch, Transformers, PySceneDetect, sentence-transformers, and other dependencies.</p>
-  <div class="warning">First run will download the Gemma 4 31B-it model (~60 GB) and the embedding model (~600 MB). Ensure you have sufficient disk space and a HuggingFace account with access to the gated Gemma models.</div>
+  <div class="warning">First run will download the Gemma 4 31B-it model (~60 GB) and the Qwen3-Embedding model (~1.2 GB). Ensure you have sufficient disk space and a HuggingFace account with access to the gated Gemma models.</div>
 </div>
 
 <div class="step">
@@ -312,12 +312,14 @@ python analyze.py /data/video/my_video.mp4 \
   <table>
     <tr><th>Flag</th><th>Default</th><th>Description</th></tr>
     <tr><td><code>--model</code></td><td><code>google/gemma-4-31B-it</code></td><td>HuggingFace model ID</td></tr>
-    <tr><td><code>--embedding-model</code></td><td><code>Alibaba-NLP/gte-multilingual-base</code></td><td>Embedding model for search</td></tr>
+    <tr><td><code>--embedding-model</code></td><td><code>Qwen/Qwen3-Embedding-0.6B</code></td><td>Embedding model for search</td></tr>
+    <tr><td><code>--embedding-dim</code></td><td>model native</td><td>Truncate embeddings to N dimensions (Matryoshka)</td></tr>
     <tr><td><code>--language</code></td><td><code>both</code></td><td>Output language: <code>en</code>, <code>cs</code>, or <code>both</code></td></tr>
     <tr><td><code>--scene-threshold</code></td><td><code>27.0</code></td><td>Shot detection sensitivity (higher = fewer cuts)</td></tr>
     <tr><td><code>--min-scene-len</code></td><td><code>15</code></td><td>Minimum shot length in frames</td></tr>
     <tr><td><code>--no-audio</code></td><td>—</td><td>Skip audio transcription (no Gladia needed)</td></tr>
     <tr><td><code>--keep-frames</code></td><td>—</td><td>Keep extracted JPEG frames after processing</td></tr>
+    <tr><td><code>--gpu</code></td><td>all visible</td><td>GPU index to use (e.g. <code>0</code> or <code>1</code>)</td></tr>
   </table>
 
   <p>Processing time: ~15–30 min for a 45-min video (varies by shot count and GPU).</p>
@@ -387,7 +389,7 @@ python analyze.py /data/video/my_video.mp4 \
 │       ├── frame_extract.py            # FFmpeg frame extraction
 │       ├── gemma_vision.py             # Gemma 4 31B-it analysis
 │       ├── audio_transcribe.py         # Gladia API transcription
-│       └── embed.py                    # gte-multilingual-base embeddings
+│       └── embed.py                    # Qwen3-Embedding embeddings
 │
 └── app/                                # Local Next.js viewer
     ├── package.json
@@ -426,7 +428,7 @@ python analyze.py /data/video/my_video.mp4 \
   "resolution": [1920, 1080],
   "summary": "Full video summary in English...",
   "summary_cs": "Celkovy souhrn videa cesky...",
-  "summary_embedding": [0.012, -0.034, ...],   // 768 floats
+  "summary_embedding": [0.012, -0.034, ...],   // 2048 floats (default)
   "scenes": [
     {
       "id": "scene-001",
@@ -451,7 +453,7 @@ python analyze.py /data/video/my_video.mp4 \
     }
   ],
   "model": "google/gemma-4-31B-it",
-  "embedding_model": "Alibaba-NLP/gte-multilingual-base",
+  "embedding_model": "Qwen/Qwen3-Embedding-0.6B",
   "language": "both",
   "processed_at": "2026-04-06T12:00:00Z"
 }</code></pre>
@@ -465,7 +467,7 @@ python analyze.py /data/video/my_video.mp4 \
   <tr><td>Shot Detection</td><td>PySceneDetect</td><td>Automatic cut boundary detection</td></tr>
   <tr><td>Frame Extraction</td><td>FFmpeg</td><td>JPEG frame extraction per shot</td></tr>
   <tr><td>Audio Transcription</td><td>Gladia API</td><td>Speech-to-text with speaker diarization</td></tr>
-  <tr><td>Embeddings</td><td>gte-multilingual-base</td><td>768-dim vectors for semantic search</td></tr>
+  <tr><td>Embeddings</td><td>Qwen3-Embedding-0.6B</td><td>2048-dim vectors for semantic search (configurable)</td></tr>
   <tr><td>Frontend</td><td>Next.js 16 + React 19</td><td>Client-side video browser</td></tr>
   <tr><td>Styling</td><td>Tailwind CSS 4 + Radix UI</td><td>Dark theme, accessible components</td></tr>
 </table>

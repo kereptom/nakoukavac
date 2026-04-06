@@ -17,7 +17,7 @@ Runs on a remote server with an NVIDIA A100 GPU. Analyzes video using Gemma 4 31
 4. **Scene grouping** — Gemma groups sequential shots into logical scenes with scene-level summaries
 5. **Video summary** — Full video summary generated from all scene descriptions
 6. **Audio transcription** (optional) — Gladia API for timestamped transcript with speaker diarization
-7. **Embeddings** — `Alibaba-NLP/gte-multilingual-base` generates 768-dim vectors for all descriptions
+7. **Embeddings** — `Qwen/Qwen3-Embedding-0.6B` generates 2048-dim vectors for all descriptions (configurable model and dimension)
 
 **Entry point:** `remote/analyze.py`  
 **Output:** Single `.nakoukavac.json` file containing all shots, scenes, summaries, transcripts, and embeddings.
