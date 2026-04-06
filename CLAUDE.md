@@ -62,8 +62,8 @@ video.mp4 ──SCP──> analyze.py          app/ (Next.js)
 ## Key Decisions
 
 - **Gemma 4 31B-it** chosen as the largest model that fits A100 80GB in FP16. No audio support on 31B — audio handled separately via Gladia API.
-- **gte-multilingual-base** for embeddings — open source, good Czech + English support, 768 dimensions.
-- **Client-side search** — embeddings are small enough (~200 items * 768 floats) to search instantly in browser. Text search for MVP, vector similarity ready for upgrade.
+- **Qwen3-Embedding-0.6B** for embeddings by default — open source, strong multilingual support, 2048 dimensions (Matryoshka-capable, truncatable via `--embedding-dim`). Switchable via `--embedding-model`.
+- **Client-side search** — embeddings are small enough to search instantly in browser. Text search for MVP, vector similarity ready for upgrade.
 - **No server API** — the viewer is purely client-side. Video stays local (loaded via `URL.createObjectURL`), only the JSON analysis file moves between machines.
 - **Bilingual output** — all descriptions in both English and Czech (configurable via `--language` flag).
 

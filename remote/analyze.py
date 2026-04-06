@@ -38,7 +38,9 @@ def main():
     parser.add_argument("video", help="Path to the input video file")
     parser.add_argument("-o", "--output", help="Output JSON path (default: <video>.nakoukavac.json)")
     parser.add_argument("--model", default="google/gemma-4-31B-it", help="Gemma model to use")
-    parser.add_argument("--embedding-model", default="Alibaba-NLP/gte-multilingual-base")
+    parser.add_argument("--embedding-model", default="Qwen/Qwen3-Embedding-0.6B")
+    parser.add_argument("--embedding-dim", type=int, default=None,
+                        help="Truncate embeddings to this dimension (Matryoshka). Default: model's native dim")
     parser.add_argument("--language", choices=["en", "cs", "both"], default="both")
     parser.add_argument("--scene-threshold", type=float, default=27.0, help="Shot detection threshold")
     parser.add_argument("--min-scene-len", type=int, default=15, help="Minimum shot length in frames")
@@ -156,7 +158,7 @@ def main():
 
         # --- Step 8: Embeddings ---
         logger.info("=== Step 8: Generating embeddings ===")
-        load_embedding_model(args.embedding_model)
+        load_embedding_model(args.embedding_model, truncate_dim=args.embedding_dim)
 
         # Collect all texts to embed in one batch
         texts_to_embed = []
