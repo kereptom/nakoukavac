@@ -1,0 +1,186 @@
+{
+  "version": "1.0",
+  "source_file": "sample_video.mp4",
+  "duration": 120.0,
+  "fps": 25.0,
+  "resolution": [1920, 1080],
+  "summary": "A short demonstration video showing various indoor and outdoor scenes. The video begins with an establishing shot of a city skyline at dawn, transitions to interior office scenes with people working at computers, then moves to a park scene with children playing. The final section shows a sunset over water with a reflective, calm mood.",
+  "summary_cs": "Kratke demonstracni video ukazujici ruzne interierove a exterierove sceny. Video zacina zaberem na panorama mesta za usvitu, prechazi do interierovych scen v kancelari s lidmi pracujicimi u pocitacu, pak se presouva do parku s hrajicimi si detmi. Posledni cast ukazuje zapad slunce nad vodou s klidnou, reflexivni naladou.",
+  "summary_embedding": [],
+  "scenes": [
+    {
+      "id": "scene-001",
+      "start_time": 0.0,
+      "end_time": 30.0,
+      "shot_ids": ["shot-001", "shot-002", "shot-003"],
+      "description": "Opening sequence: City skyline at dawn with gradual light changes and atmospheric aerial views.",
+      "description_cs": "Uvodni sekvence: Panorama mesta za usvitu s postupnymi zmenami svetla a atmosferickymi leteckymi zabery.",
+      "embedding": []
+    },
+    {
+      "id": "scene-002",
+      "start_time": 30.0,
+      "end_time": 70.0,
+      "shot_ids": ["shot-004", "shot-005", "shot-006", "shot-007"],
+      "description": "Office interior scene: People working at desks, typing on computers, having brief conversations.",
+      "description_cs": "Interierova scena v kancelari: Lide pracujici u stolu, pisi na pocitacich, vedou kratke rozhovory.",
+      "embedding": []
+    },
+    {
+      "id": "scene-003",
+      "start_time": 70.0,
+      "end_time": 100.0,
+      "shot_ids": ["shot-008", "shot-009", "shot-010"],
+      "description": "Park scene: Children playing on playground equipment, parents watching from nearby benches.",
+      "description_cs": "Scena v parku: Deti si hraji na hriskovem vybaveni, rodice sledují z nedalekych lavicek.",
+      "embedding": []
+    },
+    {
+      "id": "scene-004",
+      "start_time": 100.0,
+      "end_time": 120.0,
+      "shot_ids": ["shot-011", "shot-012"],
+      "description": "Closing sequence: Sunset over a calm lake with warm golden light reflecting off the water surface.",
+      "description_cs": "Zaverecna sekvence: Zapad slunce nad klidnym jezerem s teplym zlatym svetlem odrazejicim se od hladiny.",
+      "embedding": []
+    }
+  ],
+  "shots": [
+    {
+      "id": "shot-001",
+      "start_time": 0.0,
+      "end_time": 8.0,
+      "description": "Wide aerial shot of a city skyline at dawn. The sky transitions from dark blue to orange near the horizon. Tall buildings are silhouetted against the brightening sky.",
+      "description_cs": "Siroky letecky zaber na panorama mesta za usvitu. Obloha prechazi z tmave modre do oranzove u horizontu. Vysoke budovy jsou siluetove proti jasniejicimu nebi.",
+      "transcript": null,
+      "transcript_speaker": null,
+      "embedding": [],
+      "thumbnail_time": 4.0
+    },
+    {
+      "id": "shot-002",
+      "start_time": 8.0,
+      "end_time": 18.0,
+      "description": "Medium shot panning across rooftops. Morning light catches glass facades of modern office buildings. A few cars visible on the street below.",
+      "description_cs": "Stredni zaber panoramujici pres strechy. Ranni svetlo se odráží od sklenenych fasad modernich kancelarskych budov. Na ulici dole je videt par aut.",
+      "transcript": null,
+      "transcript_speaker": null,
+      "embedding": [],
+      "thumbnail_time": 13.0
+    },
+    {
+      "id": "shot-003",
+      "start_time": 18.0,
+      "end_time": 30.0,
+      "description": "Close-up of sunlight breaking through clouds above the city. Lens flare creates a warm, hopeful atmosphere. Camera slowly tilts down toward the street level.",
+      "description_cs": "Detail slunecniho svetla prorazejiciho mraky nad mestem. Odlesk objektivu vytvari teplou, nadejnou atmosferu. Kamera se pomalu naklani dolu k urovni ulice.",
+      "transcript": null,
+      "transcript_speaker": null,
+      "embedding": [],
+      "thumbnail_time": 24.0
+    },
+    {
+      "id": "shot-004",
+      "start_time": 30.0,
+      "end_time": 40.0,
+      "description": "Interior establishing shot of an open-plan office. Rows of desks with monitors, natural light from large windows. Several people are already seated and working.",
+      "description_cs": "Interierovy uvodni zaber otevrene kancelare. Rady stolu s monitory, prirozene svetlo z velkych oken. Nekolik lidi uz sedi a pracuje.",
+      "transcript": "[Speaker 0] Good morning everyone, let's get started.",
+      "transcript_speaker": "Speaker 0",
+      "embedding": [],
+      "thumbnail_time": 35.0
+    },
+    {
+      "id": "shot-005",
+      "start_time": 40.0,
+      "end_time": 50.0,
+      "description": "Over-the-shoulder shot of a woman typing on a laptop. Screen shows code editor with colorful syntax highlighting. She pauses to think, then continues typing.",
+      "description_cs": "Zaber pres rameno zeny pisici na notebooku. Obrazovka ukazuje editor kodu s barevnym zvyraznenim syntaxe. Zastavi se, aby premyslela, pak pokracuje v psani.",
+      "transcript": null,
+      "transcript_speaker": null,
+      "embedding": [],
+      "thumbnail_time": 45.0
+    },
+    {
+      "id": "shot-006",
+      "start_time": 50.0,
+      "end_time": 60.0,
+      "description": "Two colleagues standing by a whiteboard, discussing a diagram. One points at the board while the other nods. Warm overhead lighting creates a collaborative atmosphere.",
+      "description_cs": "Dva kolegove stojici u tabule, diskutuji o diagramu. Jeden ukazuje na tabuli, zatimco druhy prikyvuje. Teple stropni osvetleni vytvari atmosferu spoluprace.",
+      "transcript": "[Speaker 1] I think we should restructure this module. [Speaker 2] Agreed, that makes more sense.",
+      "transcript_speaker": "Speaker 1, Speaker 2",
+      "embedding": [],
+      "thumbnail_time": 55.0
+    },
+    {
+      "id": "shot-007",
+      "start_time": 60.0,
+      "end_time": 70.0,
+      "description": "Close-up of hands typing on a mechanical keyboard. Coffee cup visible in the background, slightly out of focus. Quick, decisive keystrokes suggest productive work.",
+      "description_cs": "Detail rukou pisicich na mechanicke klavesnici. V pozadi viditelny hrnek s kavou, mirne rozmazany. Rychle, rozhodne ukazy naznacuji produktivni praci.",
+      "transcript": null,
+      "transcript_speaker": null,
+      "embedding": [],
+      "thumbnail_time": 65.0
+    },
+    {
+      "id": "shot-008",
+      "start_time": 70.0,
+      "end_time": 82.0,
+      "description": "Wide shot of a green park with a playground. Children running and playing on swings and slides. Bright midday sunlight with dappled shadows from trees.",
+      "description_cs": "Siroky zaber zeleneho parku s hristem. Deti behaji a hraji si na houpackach a skluzavkach. Jasne poledni slunce s kropenatymi stiny od stromu.",
+      "transcript": null,
+      "transcript_speaker": null,
+      "embedding": [],
+      "thumbnail_time": 76.0
+    },
+    {
+      "id": "shot-009",
+      "start_time": 82.0,
+      "end_time": 92.0,
+      "description": "Medium shot of a parent sitting on a bench, watching children play. They smile and wave. Dog walking past in the foreground adds life to the scene.",
+      "description_cs": "Stredni zaber rodice sedicího na lavicce, sledujiciho hrajici si deti. Usmeji se a zamavaji. Pes prochazejici v popredi pridava scene zivot.",
+      "transcript": null,
+      "transcript_speaker": null,
+      "embedding": [],
+      "thumbnail_time": 87.0
+    },
+    {
+      "id": "shot-010",
+      "start_time": 92.0,
+      "end_time": 100.0,
+      "description": "Close-up of a child laughing on a swing, hair flying in the wind. Camera tracks the motion creating a dynamic, joyful feeling. Shallow depth of field isolates the subject.",
+      "description_cs": "Detail smejiciho se ditete na houpacce, vlasy letici ve vetru. Kamera sleduje pohyb, coz vytvari dynamicky, radostny pocit. Mala hloubka ostrosti izoluje subjekt.",
+      "transcript": null,
+      "transcript_speaker": null,
+      "embedding": [],
+      "thumbnail_time": 96.0
+    },
+    {
+      "id": "shot-011",
+      "start_time": 100.0,
+      "end_time": 112.0,
+      "description": "Wide landscape shot of a sunset over a calm lake. The sky is painted in shades of orange, pink, and purple. Perfect mirror reflection on the still water surface.",
+      "description_cs": "Siroky krajinny zaber zapadu slunce nad klidnym jezerem. Obloha je vybarvena do odstinu oranzove, ruzove a fialove. Dokonaly zrcadlovy odraz na klidne vodní hladine.",
+      "transcript": null,
+      "transcript_speaker": null,
+      "embedding": [],
+      "thumbnail_time": 106.0
+    },
+    {
+      "id": "shot-012",
+      "start_time": 112.0,
+      "end_time": 120.0,
+      "description": "Slow zoom out from the sunset, revealing a silhouetted treeline along the shore. The warm golden light gradually fades. A peaceful, contemplative closing shot.",
+      "description_cs": "Pomaly odjezd od zapadu slunce, odhalujici siluetu rady stromu podél brehu. Teple zlate svetlo postupne slabne. Klidny, kontemplativni zaverecny zaber.",
+      "transcript": null,
+      "transcript_speaker": null,
+      "embedding": [],
+      "thumbnail_time": 116.0
+    }
+  ],
+  "model": "google/gemma-4-31B-it",
+  "embedding_model": "Alibaba-NLP/gte-multilingual-base",
+  "language": "both",
+  "processed_at": "2026-04-06T12:00:00Z"
+}

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Nakoukavac — Setup Guide</title>
+  <style>
+    :root {
+      --bg: #0a0a0b;
+      --card: #111114;
+      --border: #27272a;
+      --fg: #fafafa;
+      --muted: #a1a1aa;
+      --primary: #22d3ee;
+      --cyan: #06b6d4;
+      --green: #34d399;
+      --orange: #fb923c;
+      --red: #f87171;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.6;
+      padding: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--primary), var(--green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    h1 span { font-size: 0.6em; opacity: 0.7; }
+    .subtitle {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+    h2 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin: 2.5rem 0 1rem;
+      color: var(--primary);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+    h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.5rem;
+      color: var(--green);
+    }
+    p, li {
+      color: #d4d4d8;
+      margin-bottom: 0.5rem;
+    }
+    ul, ol {
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    code {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.15em 0.4em;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.85em;
+      color: var(--primary);
+    }
+    pre {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      overflow-x: auto;
+      margin: 0.8rem 0 1.2rem;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+    pre code {
+      background: none;
+      border: none;
+      padding: 0;
+      color: #d4d4d8;
+    }
+    .step {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      position: relative;
+    }
+    .step-number {
+      position: absolute;
+      top: -12px;
+      left: 16px;
+      background: var(--primary);
+      color: var(--bg);
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 2px 10px;
+      border-radius: 12px;
+    }
+    .step h3 { margin-top: 0.5rem; }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge-remote { background: rgba(251, 146, 60, 0.15); color: var(--orange); border: 1px solid rgba(251, 146, 60, 0.3); }
+    .badge-local { background: rgba(34, 211, 238, 0.15); color: var(--primary); border: 1px solid rgba(34, 211, 238, 0.3); }
+    .badge-optional { background: rgba(161, 161, 170, 0.15); color: var(--muted); border: 1px solid rgba(161, 161, 170, 0.3); }
+    .warning {
+      background: rgba(251, 146, 60, 0.1);
+      border: 1px solid rgba(251, 146, 60, 0.3);
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+    .warning::before { content: "⚠ "; }
+    .success {
+      background: rgba(52, 211, 153, 0.1);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+    .success::before { content: "✓ "; color: var(--green); }
+    .arch-diagram {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      line-height: 1.8;
+      white-space: pre;
+      overflow-x: auto;
+      color: var(--muted);
+    }
+    .arch-diagram .hl-cyan { color: var(--primary); }
+    .arch-diagram .hl-green { color: var(--green); }
+    .arch-diagram .hl-orange { color: var(--orange); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.5rem 0.8rem;
+      text-align: left;
+      font-size: 0.85rem;
+    }
+    th {
+      background: var(--card);
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .kbd {
+      display: inline-block;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-family: monospace;
+      font-size: 0.8em;
+      box-shadow: 0 1px 0 var(--border);
+    }
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<h1>AI Nakoukavac <span>v0.1</span></h1>
+<p class="subtitle">
+  AI-powered video analysis &amp; browsing tool — watch, summarize, and search through raw video footage using Google Gemma 4.
+</p>
+
+<div class="arch-diagram"><span class="hl-orange">[Remote A100 GPU Server]</span>                  <span class="hl-cyan">[Local Machine]</span>
+
+video.mp4 ──SCP──&gt; analyze.py              nakoukavac-app (Next.js)
+                   │                        │
+                   ├─ shot detection         ├─ Load video.mp4 (local file)
+                   ├─ frame extraction       ├─ Load .nakoukavac.json
+                   ├─ <span class="hl-green">Gemma 4 31B-it</span>       ├─ Browse hierarchy
+                   ├─ Gladia (audio)         ├─ Play segments
+                   ├─ embeddings             ├─ Search descriptions
+                   │                         └─ View details
+                   └─&gt; analysis.json ──SCP──&gt;</div>
+
+<!-- ============================================================ -->
+<h2>Prerequisites</h2>
+
+<h3>Remote GPU Server <span class="badge badge-remote">Remote</span></h3>
+<ul>
+  <li>NVIDIA GPU with <strong>&ge;80 GB VRAM</strong> (A100 recommended) for Gemma 4 31B-it</li>
+  <li>Python 3.10+</li>
+  <li><code>ffmpeg</code> and <code>ffprobe</code> installed</li>
+  <li>SSH access from your local machine</li>
+  <li><em>Optional:</em> <code>GLADIA_API_KEY</code> env var for audio transcription</li>
+</ul>
+
+<h3>Local Machine <span class="badge badge-local">Local</span></h3>
+<ul>
+  <li>Node.js 20+ and npm</li>
+  <li>A modern web browser (Chrome, Firefox, Edge)</li>
+  <li>The raw video file stored locally</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2>Setup — Remote Server</h2>
+
+<div class="step">
+  <div class="step-number">1</div>
+  <h3>Clone the repository</h3>
+  <pre><code>git clone https://github.com/kereptom/nakoukavac.git
+cd nakoukavac/remote</code></pre>
+</div>
+
+<div class="step">
+  <div class="step-number">2</div>
+  <h3>Create a Python virtual environment &amp; install dependencies</h3>
+  <pre><code>python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt</code></pre>
+  <p>This installs PyTorch, Transformers, PySceneDetect, sentence-transformers, and other dependencies.</p>
+  <div class="warning">First run will download the Gemma 4 31B-it model (~60 GB) and the embedding model (~600 MB). Ensure you have sufficient disk space and a HuggingFace account with access to the gated Gemma models.</div>
+</div>
+
+<div class="step">
+  <div class="step-number">3</div>
+  <h3>Accept the Gemma 4 license</h3>
+  <p>Gemma 4 is a gated model. You need to:</p>
+  <ol>
+    <li>Go to <code>https://huggingface.co/google/gemma-4-31B-it</code></li>
+    <li>Accept the license agreement</li>
+    <li>Log in on the server: <code>huggingface-cli login</code></li>
+  </ol>
+</div>
+
+<div class="step">
+  <div class="step-number">4</div>
+  <h3><span class="badge badge-optional">Optional</span> Set up Gladia API for audio transcription</h3>
+  <pre><code>export GLADIA_API_KEY="your-api-key-here"</code></pre>
+  <p>Get a key at <code>https://www.gladia.io</code>. Skip this if you only need visual analysis (use <code>--no-audio</code> flag).</p>
+</div>
+
+<!-- ============================================================ -->
+<h2>Setup — Local Machine</h2>
+
+<div class="step">
+  <div class="step-number">5</div>
+  <h3>Clone the repository</h3>
+  <pre><code>git clone https://github.com/kereptom/nakoukavac.git
+cd nakoukavac/app</code></pre>
+</div>
+
+<div class="step">
+  <div class="step-number">6</div>
+  <h3>Install dependencies &amp; start dev server</h3>
+  <pre><code>npm install
+npm run dev</code></pre>
+  <p>The app will be available at <code>http://localhost:3000</code></p>
+</div>
+
+<!-- ============================================================ -->
+<h2>Usage — Full Workflow</h2>
+
+<div class="step">
+  <div class="step-number">A</div>
+  <h3>Upload video to remote server <span class="badge badge-local">Local</span></h3>
+  <pre><code>scp /path/to/my_video.mp4 gpu-server:/data/video/</code></pre>
+</div>
+
+<div class="step">
+  <div class="step-number">B</div>
+  <h3>Run the analysis pipeline <span class="badge badge-remote">Remote</span></h3>
+  <pre><code>ssh gpu-server
+cd nakoukavac/remote
+source venv/bin/activate
+
+python analyze.py /data/video/my_video.mp4 \
+  --output /data/video/my_video.nakoukavac.json \
+  --language both</code></pre>
+
+  <h3>Available flags:</h3>
+  <table>
+    <tr><th>Flag</th><th>Default</th><th>Description</th></tr>
+    <tr><td><code>--model</code></td><td><code>google/gemma-4-31B-it</code></td><td>HuggingFace model ID</td></tr>
+    <tr><td><code>--embedding-model</code></td><td><code>Alibaba-NLP/gte-multilingual-base</code></td><td>Embedding model for search</td></tr>
+    <tr><td><code>--language</code></td><td><code>both</code></td><td>Output language: <code>en</code>, <code>cs</code>, or <code>both</code></td></tr>
+    <tr><td><code>--scene-threshold</code></td><td><code>27.0</code></td><td>Shot detection sensitivity (higher = fewer cuts)</td></tr>
+    <tr><td><code>--min-scene-len</code></td><td><code>15</code></td><td>Minimum shot length in frames</td></tr>
+    <tr><td><code>--no-audio</code></td><td>—</td><td>Skip audio transcription (no Gladia needed)</td></tr>
+    <tr><td><code>--keep-frames</code></td><td>—</td><td>Keep extracted JPEG frames after processing</td></tr>
+  </table>
+
+  <p>Processing time: ~15–30 min for a 45-min video (varies by shot count and GPU).</p>
+</div>
+
+<div class="step">
+  <div class="step-number">C</div>
+  <h3>Download the analysis result <span class="badge badge-local">Local</span></h3>
+  <pre><code>scp gpu-server:/data/video/my_video.nakoukavac.json ./</code></pre>
+  <p>The JSON file is typically 1–5 MB (mostly embedding vectors).</p>
+</div>
+
+<div class="step">
+  <div class="step-number">D</div>
+  <h3>Open in the browser <span class="badge badge-local">Local</span></h3>
+  <ol>
+    <li>Make sure the dev server is running: <code>cd nakoukavac/app &amp;&amp; npm run dev</code></li>
+    <li>Open <code>http://localhost:3000</code></li>
+    <li>Drag &amp; drop <strong>both files</strong> onto the drop zone:
+      <ul>
+        <li>Your video file (<code>my_video.mp4</code>)</li>
+        <li>The analysis file (<code>my_video.nakoukavac.json</code>)</li>
+      </ul>
+    </li>
+    <li>Alternatively, use the "Select Video" and "Select JSON" buttons</li>
+  </ol>
+  <div class="success">The browser will load the video and analysis — you can now browse the full hierarchy, play any segment, read AI descriptions, and search through the content.</div>
+</div>
+
+<!-- ============================================================ -->
+<h2>Quick Test (No GPU Needed)</h2>
+
+<p>A sample analysis JSON is included at <code>app/public/sample-analysis.nakoukavac.json</code>. To test the UI without running the GPU pipeline:</p>
+<ol>
+  <li>Start the app: <code>cd app &amp;&amp; npm run dev</code></li>
+  <li>Open <code>http://localhost:3000</code></li>
+  <li>Load <strong>any short video file</strong> (the descriptions won't match, but you can test the UI)</li>
+  <li>Load the sample JSON from <code>app/public/sample-analysis.nakoukavac.json</code></li>
+</ol>
+
+<!-- ============================================================ -->
+<h2>Keyboard Shortcuts</h2>
+
+<table>
+  <tr><th>Key</th><th>Action</th></tr>
+  <tr><td><span class="kbd">Space</span></td><td>Play / Pause</td></tr>
+  <tr><td><span class="kbd">←</span></td><td>Seek back 5 seconds</td></tr>
+  <tr><td><span class="kbd">→</span></td><td>Seek forward 5 seconds</td></tr>
+  <tr><td><span class="kbd">Escape</span></td><td>Deselect current item</td></tr>
+  <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">Scroll</span></td><td>Zoom timeline in/out</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>Project Structure</h2>
+
+<pre><code>nakoukavac/
+├── CLAUDE.md                           # Project docs for AI assistants
+├── README.html                         # This file
+├── .gitignore
+│
+├── remote/                             # GPU server pipeline (Python)
+│   ├── analyze.py                      # CLI entry point
+│   ├── requirements.txt
+│   └── pipeline/
+│       ├── schema.py                   # Pydantic output models
+│       ├── shot_detect.py              # PySceneDetect shot boundaries
+│       ├── frame_extract.py            # FFmpeg frame extraction
+│       ├── gemma_vision.py             # Gemma 4 31B-it analysis
+│       ├── audio_transcribe.py         # Gladia API transcription
+│       └── embed.py                    # gte-multilingual-base embeddings
+│
+└── app/                                # Local Next.js viewer
+    ├── package.json
+    ├── src/
+    │   ├── app/
+    │   │   ├── layout.tsx              # Root layout
+    │   │   ├── page.tsx                # File drop zone → main app
+    │   │   └── globals.css             # Theme &amp; timeline styles
+    │   ├── components/
+    │   │   ├── browser/
+    │   │   │   ├── browser-layout.tsx  # Main orchestrator
+    │   │   │   ├── video-player.tsx    # HTML5 video + controls
+    │   │   │   ├── timeline.tsx        # Dual-track zoomable timeline
+    │   │   │   ├── hierarchy-panel.tsx # Scene/Shot tree browser
+    │   │   │   ├── detail-panel.tsx    # Selected item details
+    │   │   │   └── search-panel.tsx    # Text search
+    │   │   └── ui/                     # Radix UI primitives
+    │   └── lib/
+    │       ├── types.ts                # TypeScript types
+    │       ├── utils.ts                # Helpers (cn, formatTime)
+    │       ├── search.ts               # Search scoring engine
+    │       └── load-analysis.ts        # JSON parser
+    └── public/
+        └── sample-analysis.nakoukavac.json  # Test data</code></pre>
+
+<!-- ============================================================ -->
+<h2>Output JSON Schema</h2>
+
+<p>The <code>.nakoukavac.json</code> file produced by the pipeline has this structure:</p>
+
+<pre><code>{
+  "version": "1.0",
+  "source_file": "video.mp4",
+  "duration": 2700.0,           // seconds
+  "fps": 25.0,
+  "resolution": [1920, 1080],
+  "summary": "Full video summary in English...",
+  "summary_cs": "Celkovy souhrn videa cesky...",
+  "summary_embedding": [0.012, -0.034, ...],   // 768 floats
+  "scenes": [
+    {
+      "id": "scene-001",
+      "start_time": 0.0,
+      "end_time": 45.2,
+      "shot_ids": ["shot-001", "shot-002", "shot-003"],
+      "description": "Opening scene: ...",
+      "description_cs": "Uvodni scena: ...",
+      "embedding": [...]
+    }
+  ],
+  "shots": [
+    {
+      "id": "shot-001",
+      "start_time": 0.0,
+      "end_time": 8.5,
+      "description": "Wide aerial shot of...",
+      "description_cs": "Siroky letecky zaber...",
+      "transcript": "[Speaker 0] Hello everyone...",
+      "embedding": [...],
+      "thumbnail_time": 4.25
+    }
+  ],
+  "model": "google/gemma-4-31B-it",
+  "embedding_model": "Alibaba-NLP/gte-multilingual-base",
+  "language": "both",
+  "processed_at": "2026-04-06T12:00:00Z"
+}</code></pre>
+
+<!-- ============================================================ -->
+<h2>Tech Stack</h2>
+
+<table>
+  <tr><th>Component</th><th>Technology</th><th>Purpose</th></tr>
+  <tr><td>Video Analysis</td><td>Gemma 4 31B-it</td><td>Visual shot descriptions, scene grouping, video summary</td></tr>
+  <tr><td>Shot Detection</td><td>PySceneDetect</td><td>Automatic cut boundary detection</td></tr>
+  <tr><td>Frame Extraction</td><td>FFmpeg</td><td>JPEG frame extraction per shot</td></tr>
+  <tr><td>Audio Transcription</td><td>Gladia API</td><td>Speech-to-text with speaker diarization</td></tr>
+  <tr><td>Embeddings</td><td>gte-multilingual-base</td><td>768-dim vectors for semantic search</td></tr>
+  <tr><td>Frontend</td><td>Next.js 16 + React 19</td><td>Client-side video browser</td></tr>
+  <tr><td>Styling</td><td>Tailwind CSS 4 + Radix UI</td><td>Dark theme, accessible components</td></tr>
+</table>
+
+<footer>
+  AI Nakoukavac &mdash; built with Gemma 4 &amp; Claude Code &mdash; 2026
+</footer>
+
+</body>
+</html>
